@@ -12,17 +12,15 @@ class ServiceOrderController extends Controller
 {
     public function index(Request $request)
     {
+        $perPage = 5;
+        $page = $request->query('page', 1);
         $vehiclePlate = $request->query('vehiclePlate');
 
-        $perPage = 5;
-
-        $page = $request->query('page', 1);
-
         $serviceOrders = ServiceOrder::with('user')
-        ->when($vehiclePlate, function ($query) use ($vehiclePlate) {
-            $query->where('vehiclePlate', 'LIKE', "%$vehiclePlate%");
-        })
-        ->paginate($perPage, ['*'], 'page', $page);
+            ->when($vehiclePlate, function ($query) use ($vehiclePlate) {
+                $query->where('vehiclePlate', 'LIKE', "%$vehiclePlate%");
+            })
+            ->paginate($perPage, ['*'], 'page', $page);
 
         return ServiceOrderResource::collection($serviceOrders);
     }
@@ -33,6 +31,9 @@ class ServiceOrderController extends Controller
         
         $order = ServiceOrder::create($data);
 
-        return response()->json(['message' => 'Ordem de serviço criada com sucesso', 'data' => $order], 201);;
+        return response()->json([
+            'message' => 'Ordem de serviço criada com sucesso', 
+            'data' => $order
+        ], 201);
     }
 }
