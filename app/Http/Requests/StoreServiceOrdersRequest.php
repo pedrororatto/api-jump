@@ -22,7 +22,7 @@ class StoreServiceOrdersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'vehiclePlate' => 'required|string|max:7',
+            'vehiclePlate' => 'required|string|max:7|unique:service_orders',
             'entryDateTime' => 'required|date',
             'exitDateTime' => 'nullable|date',
             'priceType' => 'nullable|string|max:55',
