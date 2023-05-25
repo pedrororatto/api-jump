@@ -1,6 +1,6 @@
 # API Jump Park
 
-Teste realizado para a empresa Jump Park, sobre o desenvolvimento de uma API REST com os métodos de listagem e criação
+Teste realizado para a empresa Jump Park, sobre o desenvolvimento de uma API REST com os métodos de listagem e criação. Framework escolhido foi o laravel.
 
 ### Passo a Passo 
 
